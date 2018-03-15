@@ -52,25 +52,29 @@ public class MainActivity extends AppCompatActivity {
                     String input = editText.getText().toString();
                     int guess = Integer.parseInt(input);
 
-                    if(tries > 1){
-                        if(guess > 0 && input.length() > 0 && guess <= 100){
-                            checkGuess(guess, intent, input);
-                            editText.setText("");
+
+                        if(guess > 0 && input.length() > 0){
+                            if(guess <= 100) {
+                                if(tries > 1) {
+                                    checkGuess(guess, intent, input);
+                                    editText.setText("");
+                                }else {
+                                    intent.putExtra("text_display", "You ran out of attempts\nThe correct number was: "+ random+"\nYou Lose!");
+                                    random = (int)(Math.random() * (higher-lower)) + lower;
+                                    tries = 5;
+                                    display = "Attempts: "+tries;
+                                    textView.setText(display);
+                                    intent.putExtra("WINORLOSE","lose");
+                                    startActivity(intent);
+                                }
+                            }else {
+                                clueMessage("Enter a number less than hundred");
+                            }
                         }else {
-                            clueMessage("Enter a number greater than zero and less than or equal to 100");
+                            clueMessage("Enter a number greater than zero");
                             editText.setText("");
 
                         }
-
-                    }else {
-                        intent.putExtra("text_display", "You ran out of attempts\nThe correct number was: "+ random+"\nYou Lose!");
-                        random = (int)(Math.random() * (higher-lower)) + lower;
-                        tries = 5;
-                        display = "Attempts: "+tries;
-                        textView.setText(display);
-                        intent.putExtra("WINORLOSE","lose");
-                        startActivity(intent);
-                    }
 
                 }catch (Exception e){
                     clueMessage("Enter input");
@@ -81,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkGuess(int guess, Intent intent, String input){
-        if(guess > 0 && input.length() > 0 && guess <= 100){
             if(guess == random){
                 intent.putExtra("text_display", "YOU WON\ncorrect number: "+random);
                 display =  "Attempts: "+tries;
@@ -101,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
 
     @Override
     public void onBackPressed() {

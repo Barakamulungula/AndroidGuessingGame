@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GuessingGame</string>
+    <string name="app_title">Guess a number between 1 and 100</string>
+    <string name="userPrompt">Attempts: 5</string>
+    <string name="submit">guess</string>
+    <string name="playAgain">Play Again</string>
+    <string name="hint">1 – 100</string>
+</resources>
+
+

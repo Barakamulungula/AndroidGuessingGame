@@ -57,18 +57,35 @@
         android:id="@+id/editText_line"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_margin="10dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
         android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/guess_editText"
 
         />
 
+
+    <TextView
+        android:id="@+id/clueText"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/hint"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintTop_toBottomOf="@id/app_numOfAttempts"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <Button
         android:id="@+id/submit_button"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_margin="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="152dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/black"
         android:text="@string/submit"
@@ -80,18 +97,5 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_line"
         app:layout_constraintVertical_bias="0.246" />
 
-
-    <TextView
-        android:id="@+id/clueText"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:text="@string/hint"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

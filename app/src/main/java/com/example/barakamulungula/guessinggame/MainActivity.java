@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
     private int lower = 1;
     private int higher = 100;
-    private int random = 21;
+    private int random = (int)(Math.random() * (higher-lower)) + lower;
     private String display;
-    private int tries = 5;
+    private int maxGuessCount = 5;
 
 
     @Override
@@ -55,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
                         if(guess > 0 && input.length() > 0){
                             if(guess <= 100) {
-                                if(tries > 1) {
-                                    checkGuess(guess, intent, input);
+                                if(maxGuessCount > 1) {
+                                    checkGuess(guess, intent);
                                     editText.setText("");
                                 }else {
                                     intent.putExtra("text_display", "You ran out of attempts\nThe correct number was: "+ random+"\nYou Lose!");
                                     random = (int)(Math.random() * (higher-lower)) + lower;
-                                    tries = 5;
-                                    display = "Attempts: "+tries;
+                                    maxGuessCount = 5;
+                                    display = "Attempts: "+ maxGuessCount;
                                     textView.setText(display);
                                     intent.putExtra("WINORLOSE","lose");
                                     startActivity(intent);
@@ -80,26 +79,27 @@ public class MainActivity extends AppCompatActivity {
                     clueMessage("Enter input");
                     editText.setText("");
                 }
+                editText.setText("");
             }
         });
     }
 
-    private void checkGuess(int guess, Intent intent, String input){
+    private void checkGuess(int guess, Intent intent){
             if(guess == random){
                 intent.putExtra("text_display", "YOU WON\ncorrect number: "+random);
-                display =  "Attempts: "+tries;
+                display =  "Attempts: "+ maxGuessCount;
                 textView.setText(display);
                 intent.putExtra("WINORLOSE","win");
                 startActivity(intent);
             }else{
-                tries--;
+                maxGuessCount--;
                 if(guess > random){
                     clueMessage("Enter a lower number");
-                    display =  "Attempts: "+tries;
+                    display =  "Attempts: "+ maxGuessCount;
                     textView.setText(display);
                 }else {
                     clueMessage("Enter higher number");
-                    display = "Attempts: "+tries;
+                    display = "Attempts: "+ maxGuessCount;
                     textView.setText(display);
                 }
             }

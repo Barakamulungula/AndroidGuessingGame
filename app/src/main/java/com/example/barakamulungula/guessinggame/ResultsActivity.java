@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NameActivity extends AppCompatActivity {
+public class ResultsActivity extends AppCompatActivity {
 
     TextView resultsTextView;
     Button restartButton;
@@ -16,7 +16,7 @@ public class NameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name);
+        setContentView(R.layout.activity_results);
         resultsTextView = findViewById(R.id.winOrLose);
         restartButton = findViewById(R.id.restart_button);
         resultImageView = findViewById(R.id.emoji_image);

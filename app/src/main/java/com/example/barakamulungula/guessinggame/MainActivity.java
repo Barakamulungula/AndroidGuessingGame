@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     textView_clueText.setVisibility(View.INVISIBLE);
-                    Intent intent = new Intent(MainActivity.this, NameActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
                     String input = editText_userInput.getText().toString();
                     int guess = Integer.parseInt(input);
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                                     checkGuess(guess, intent);
                                     editText_userInput.setText("");
                                 }else {
-                                    intent.putExtra("text_display", "You ran out of attempts\nthe winning number was: "+ randomNumber +"\nYou Lose!");
+                                    intent.putExtra("text_display", "You ran out of attempts\nThe winning number was: "+ randomNumber +"\nYou Lose!");
                                     randomNumber = (int)(Math.random() * (100-1)) + 1;
                                     maxGuess = 5;
                                     display = "Attempts: "+ maxGuess;

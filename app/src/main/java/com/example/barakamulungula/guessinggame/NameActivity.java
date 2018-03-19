@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class NameActivity extends AppCompatActivity {
 
-    TextView textViewEnd;
+    TextView resultsTextView;
     Button restartButton;
     ImageView resultImageView;
 
@@ -17,19 +17,19 @@ public class NameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
-        textViewEnd = findViewById(R.id.winOrLose);
+        resultsTextView = findViewById(R.id.winOrLose);
         restartButton = findViewById(R.id.restart_button);
         resultImageView = findViewById(R.id.emoji_image);
 
         String name = getIntent().getStringExtra("text_display");
-        textViewEnd.setText(name);
+        resultsTextView.setText(name);
 
         if(getIntent().getStringExtra("WINORLOSE").trim().equals("win")){
             resultImageView.setBackgroundResource(R.drawable.win);
-            textViewEnd.setBackgroundColor(getResources().getColor(R.color.greenWinColor));
+            resultsTextView.setBackgroundColor(getResources().getColor(R.color.greenWinColor));
         }else{
             resultImageView.setBackgroundResource(R.drawable.lose);
-            textViewEnd.setBackgroundColor(getResources().getColor(R.color.redColor));
+            resultsTextView.setBackgroundColor(getResources().getColor(R.color.redColor));
         }
 
         restartApp();

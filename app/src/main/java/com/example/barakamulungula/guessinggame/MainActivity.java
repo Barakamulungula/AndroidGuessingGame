@@ -15,9 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView_userAttempts;
     private TextView textView_clueText;
 
-    private int lower = 1;
-    private int higher = 100;
-    private int random = (int)(Math.random() * (higher-lower)) + lower;
+    private int randomNumber = 20;
     private String display;
     private int maxGuess = 5;
 
@@ -35,12 +33,15 @@ public class MainActivity extends AppCompatActivity {
         onSubmitButtonClick();
     }
 
+    /**
+     * This method displays a message to give the user hints about the number*/
     private void clueMessage(String message){
         textView_clueText.setText(message);
         textView_clueText.setVisibility(View.VISIBLE);
     }
 
-
+    /**
+     * This method is called when the submit button is clicked. The method checks if the users input is corrects*/
     private void onSubmitButtonClick() {
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,15 +52,14 @@ public class MainActivity extends AppCompatActivity {
                     String input = editText_userInput.getText().toString();
                     int guess = Integer.parseInt(input);
 
-
                         if(guess > 0 && input.length() > 0){
                             if(guess <= 100) {
                                 if(maxGuess > 1) {
                                     checkGuess(guess, intent);
                                     editText_userInput.setText("");
                                 }else {
-                                    intent.putExtra("text_display", "You ran out of attempts\nthe winning number was: "+ random+"\nYou Lose!");
-                                    random = (int)(Math.random() * (higher-lower)) + lower;
+                                    intent.putExtra("text_display", "You ran out of attempts\nthe winning number was: "+ randomNumber +"\nYou Lose!");
+                                    randomNumber = (int)(Math.random() * (100-1)) + 1;
                                     maxGuess = 5;
                                     display = "Attempts: "+ maxGuess;
                                     textView_userAttempts.setText(display);
@@ -85,15 +85,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkGuess(int guess, Intent intent){
-            if(guess == random){
-                intent.putExtra("text_display", "YOU WON\nthe winning was number: "+random);
+            if(guess == randomNumber){
+                intent.putExtra("text_display", "YOU WON\nthe winning was number: "+ randomNumber);
                 display =  "Attempts: "+ maxGuess;
+                maxGuess = 5;
                 textView_userAttempts.setText(display);
                 intent.putExtra("WINORLOSE","win");
                 startActivity(intent);
             }else{
                 maxGuess--;
-                if(guess > random){
+                if(guess > randomNumber){
                     clueMessage("Enter a lower number.");
                     display =  "Attempts: "+ maxGuess;
                     textView_userAttempts.setText(display);

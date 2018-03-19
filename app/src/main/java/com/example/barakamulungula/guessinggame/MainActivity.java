@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
             if(guess == randomNumber){
                 intent.putExtra("text_display", "YOU WON\nthe winning was number: "+ randomNumber);
                 display =  "Attempts: "+ maxGuess;
+                randomNumber = (int)(Math.random() * (100-1)) + 1;
                 maxGuess = 5;
+                display = "Attempts: "+ maxGuess;
                 textView_userAttempts.setText(display);
                 intent.putExtra("WINORLOSE","win");
                 startActivity(intent);

@@ -11,7 +11,7 @@ public class NameActivity extends AppCompatActivity {
 
     TextView textViewEnd;
     Button restartButton;
-    ImageView imageView;
+    ImageView resultImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,16 +19,16 @@ public class NameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_name);
         textViewEnd = findViewById(R.id.winOrLose);
         restartButton = findViewById(R.id.restart_button);
-        imageView = findViewById(R.id.emoji_image);
+        resultImageView = findViewById(R.id.emoji_image);
 
         String name = getIntent().getStringExtra("text_display");
         textViewEnd.setText(name);
 
         if(getIntent().getStringExtra("WINORLOSE").trim().equals("win")){
-            imageView.setBackgroundResource(R.drawable.win);
+            resultImageView.setBackgroundResource(R.drawable.win);
             textViewEnd.setBackgroundColor(getResources().getColor(R.color.greenWinColor));
         }else{
-            imageView.setBackgroundResource(R.drawable.lose);
+            resultImageView.setBackgroundResource(R.drawable.lose);
             textViewEnd.setBackgroundColor(getResources().getColor(R.color.redColor));
         }
 
